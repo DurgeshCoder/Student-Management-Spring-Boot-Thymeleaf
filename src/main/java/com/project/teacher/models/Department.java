@@ -1,9 +1,16 @@
 package com.project.teacher.models;
-import lombok.Data;
+
+import lombok.*;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 public class Department {
     @Id
@@ -11,27 +18,13 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer department_id;
 
-    private String department_name;
+    private String departmentName;
     private String hod;
     @Column(length = 1000)
     private String description;
 
-    public Integer getDepartment_id() {
-        return department_id;
-    }
+    @OneToMany(mappedBy = "department")
+    private List<Teacher> teachers = new ArrayList<>();
 
-    public void setDepartment_id(Integer department_id) {
-        this.department_id = department_id;
-    }
 
-    @ManyToOne(optional = false)
-    private Teacher teachers;
-
-    public Teacher getTeachers() {
-        return teachers;
-    }
-
-    public void setTeachers(Teacher teachers) {
-        this.teachers = teachers;
-    }
 }

@@ -2,113 +2,138 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="admin/main_base::layout(~{::section})">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 <section>
-  <div class="card">
-    <div class="card-header bg_primary">
-      <h4>Add Teacher</h4>
-    </div>
-    <form id="login-form" class="form" th:action="@{/admin/do-add-teacher}" th:object="${teacher}" action="#"
-          method="post">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="teacherName">Teacher Name</label>
-              <input
-                      id="teacherName"
-                      name="teacherName"
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter here"
-              />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input
-                      id="email"
-                      name="email"
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter here"
-              />
-            </div>
-          </div>
+    <div class="card">
+        <div class="card-header bg_primary">
+            <h4>Add Teacher</h4>
         </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="phone">Contect Info</label>
-              <input
-                      id="phone"
-                      name="phone"
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter here"
-              />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="address">Address</label>
-              <input
-                      id="address"
-                      name="address"
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter here"
-              />
-            </div>
-          </div>
-        </div>
+        <form id="login-form" class="form" th:action="@{/admin/do-add-teacher}" th:object="${teacher}" action="#"
+              method="post">
+            <div class="card-body">
                 <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="department">Department</label>
-                      <input
-                              id="department"
-                              name="department"
-                              type="text"
-                              class="form-control"
-                              placeholder="Enter here"
-                      />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="teacherName">Teacher Name</label>
+                            <input
+                                    id="teacherName"
+                                    name="teacherName"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Enter here"
+                            />
+                        </div>
                     </div>
-                  </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input
+                                    id="email"
+                                    name="email"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Enter here"
+                            />
+                        </div>
+                    </div>
                 </div>
-<!--        <div class="row">-->
-<!--          <div class="col-md-6">-->
-<!--            <div class="form-group">-->
-<!--              <label for="deparment">department</label>-->
-<!--              <input-->
-<!--                      id=""-->
-<!--                      type="text"-->
-<!--                      class="form-control"-->
-<!--                      placeholder="Enter here"-->
-<!--              />-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-      </div>
-      <div class="card-footer">
-        <div class="row">
-          <div class="col-2 mx-auto container text-center">
-            <input class="btn btn-primary btn-sm text-uppercase"  type="submit">
-            </input>
-          </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="phone">Contect Info</label>
+                            <input
+                                    id="phone"
+                                    name="phone"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Enter here"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input
+                                    id="address"
+                                    name="address"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Enter here"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select
+                                    class="form-control"
+                                    name="department"
+                                    id="department"
+                                    th:field="*{department}"
+                            >
+                                <option th:each="choice : ${departments}"
+                                        th:value="${choice.department_id}"
+                                ><span th:text="${choice.departmentName}"></span></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--        <div class="row">-->
+                <!--          <div class="col-md-6">-->
+                <!--            <div class="form-group">-->
+                <!--              <label for="deparment">department</label>-->
+                <!--              <input-->
+                <!--                      id=""-->
+                <!--                      type="text"-->
+                <!--                      class="form-control"-->
+                <!--                      placeholder="Enter here"-->
+                <!--              />-->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-2 mx-auto container text-center">
+                        <input class="btn btn-primary btn-sm text-uppercase" type="submit">
+                        </input>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+    <div class="card mt-4">
+        <div class="card-header bg_primary">
+                <h4>All Teachers</h4>
         </div>
-      </div>
-    </form>
-
-  </div>
-  </div>
-
-
+        <div class="card-body" >
+            <table class="table table-bordered table-hover">
+                <thead>
+                <th>Teacher Name</th>
+                <th>Contect no</th>
+                <th>Email</th>
+                <th>Address</th>
+                </thead>
+                <tbody>
+                <tr th:each="teacher:${allTeachers}" >
+                    <td th:text="${teacher.getTeacherName()}"></td>
+                    <td th:text="${teacher.getPhone()}"></td>
+                    <td th:text="${teacher.getEmail()}"></td>
+                    <td th:text="${teacher.getAddress()}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </section>
 </body>

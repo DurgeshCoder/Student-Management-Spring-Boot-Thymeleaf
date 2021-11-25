@@ -18,56 +18,6 @@
     <title th:text="${title}">Base html</title>
 </head>
 <body>
-
-
-<!-- navbar -->
-
-<nav class="navbar navbar-expand-lg navbar-dark  bg-primary">
-
-    <a class="navbar-brand" href="#">Student App</a>
-
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-
-        <ul class="navbar-nav mr-auto text-uppercase">
-
-            <li class="nav-item active"><a th:href="@{/admin/home}" class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-            </a></li>
-
-
-        </ul>
-
-        <ul class="navbar-nav member-list-auto text-uppercase">
-
-            <li class="nav-item active">
-                <a class="nav-link " href="#"
-                   tabindex="-1" aria-disabled="true">
-                    <span th:text="${user.name}"></span>
-                </a></li>
-
-
-            <li class="nav-item"><a class="nav-link " th:href="@{/admin/logout}" href="#"
-                                    tabindex="-1" aria-disabled="true">Logout</a></li>
-
-
-        </ul>
-
-
-    </div>
-</nav>
-<!--
-END navbar -->
-
-
 <div th:replace="${content}"></div>
 
 

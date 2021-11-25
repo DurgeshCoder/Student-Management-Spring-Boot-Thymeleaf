@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <title >Student Management</title>
+</head>
+<style>
+    body {
+        min-height: 100vh;
+        width: 100vw;
+    }
+</style>
+<body>
+<div class="container">
+    <div class="row mt-md-5">
+        <div class="col-lg-4">
+            <div class="card1 p-0">
+                <div class="card1-image"> <img src="../static/img/super-admin-icon.png" th:src="@{img/super-admin-icon.png}" alt=""> </div>
+                <div class="card1-content d-flex flex-column align-items-center">
+                    <div class="social-icons d-flex justify-content-center" style="font-size: 40px;">
+                        <li style="--i:1"> <a href="/admin-login"> <i class="fas fa-sign-in-alt"></i></a> </li>
+                    </div>
+                    <h4 class="pt-2 text-dark">ADMIN</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card1 p-0">
+                <div class="card1-image"> <img src="../static/img/faculty-icon.png" th:src="@{img/faculty-icon.png}" alt=""> </div>
+                <div class="card1-content d-flex flex-column align-items-center">
+                    <div class="social-icons d-flex justify-content-center" style="font-size: 40px;">
+                        <li style="--i:1"> <a href=""> <i class="fas fa-sign-in-alt"></i></a> </li>
+                    </div>
+                    <h4 class="pt-2 text-dark">FACULTY</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card1 p-0">
+                <div class="card1-image"> <img src="../static/img/student_pic.png" th:src="@{img/student_pic.png}" alt=""> </div>
+                <div class="card1-content d-flex flex-column align-items-center">
+                    <div class="social-icons d-flex justify-content-center" style="font-size: 40px;">
+                        <li style="--i:1"> <a href="/student" th:href="@{/student-login}"> <i class="fas fa-sign-in-alt"></i></a> </li>
+                    </div>
+                    <h4 class="pt-2 text-dark">STUDENT</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

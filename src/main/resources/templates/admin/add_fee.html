@@ -9,18 +9,36 @@
 <section>
   <div class="card">
     <div class="card-header bg_primary">
-      <h4>Add Department</h4>
+      <h4>Add Fee Structure</h4>
     </div>
-    <form id="login-form" class="form" th:action="@{/admin/do-add-department}" th:object="${department}" action="#"
+    <form id="login-form" class="form" th:action="@{/admin/do-add-fee}" th:object="${fee}" action="#"
           method="post">
       <div class="card-body">
+        <div class="row mb-3">
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="course"> Name</label>
+              <select
+                      class="form-control"
+                      name="course"
+                      id="course"
+              >
+                <option th:each="choice : ${courses}"
+                        th:value="${choice.getCourse_id()}"
+                ><span th:text="${choice.getCourse_name()}"></span></option>
+              </select>
+            </div>
+          </div>
+
+        </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="departmentName">Department Name</label>
+              <label for="fee">Course Fee</label>
               <input
-                      id="departmentName"
-                      name="departmentName"
+                      id="fee"
+                      name="fee"
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
@@ -28,31 +46,18 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
-              <label for="hod">HOD</label>
-              <input
-                      id="hod"
-                      name="hod"
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter here"
-              />
-            </div>
+          <div class="form-group">
+            <label for="discount">Discount</label>
+            <input
+                    id="discount"
+                    name="discount"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter here"
+            />
           </div>
         </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea
-                      id="description"
-                      name="description"
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter here"
-                      rows="3">
-              </textarea>
-            </div>
-          </div>
+        </div>
 
         <!--        <div class="row">-->
         <!--          <div class="col-md-6">-->
@@ -88,27 +93,11 @@
         </div>
       </div>
     </form>
+
+  </div>
   </div>
 
-  <div class="card mt-4" >
-    <div class="card-header bg_primary">
-      <h4>All Department</h4>
-    </div>
-    <table class="table table-bordered table-hover">
-      <thead>
-      <th>Department Name</th>
-      <th>Department HOD</th>
-      <th>description</th>
-      </thead>
-      <tbody>
-      <tr th:each="d:${departments}" >
-        <td th:text="${d.getDepartmentName()}"></td>
-        <td th:text="${d.getHod()}"></td>
-        <td th:text="${d.getDescription()}"></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+
 
 </section>
 </body>

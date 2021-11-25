@@ -37,7 +37,7 @@
                         th:href="@{/admin/add-student}"
                         th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-student' ? 'router-link-active':''}"
                         class="list-group-item list-group-item-action py-2 ripple"
-                ><i class="fas fa-user-graduate me-2"></i><span>Add Student</span></a
+                ><i class="fas fa-user-graduate me-2"></i><span>Students</span></a
                 >
                 <a
                         th:href="@{/admin/add-teacher}"
@@ -45,39 +45,40 @@
                         th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-teacher' ? 'router-link-active':''}"
                 >
                     <i class="fas fa-chalkboard-teacher me-2"></i>
-                    <span>Add Teacher</span>
+                    <span>Teachers</span>
                 </a>
                 <a
                         th:href="@{/admin/add-department}"
                         class="list-group-item list-group-item-action py-2 ripple"
                         th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-department' ? 'router-link-active':''}"
                 >
-                    <i class="fas fa-chart-line fa-fw me-2"></i>
-                    <span>Add Department</span>
+                    <i class="fas fa-building me-3"></i>
+                    <span>Department</span>
                 </a>
                 <a
                         th:href="@{/admin/add-course}"
                         class="list-group-item list-group-item-action py-2 ripple"
                         th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-course' ? 'router-link-active':''}"
                 >
-                    <i class="fas fa-chart-line fa-fw me-2"></i>
-                    <span>Add Course</span>
+                    <i class="fas fa-books me-3"></i>
+                    <span>Courses</span>
                 </a>
-<!--                <a-->
-<!--                        href="#"-->
-<!--                        class="list-group-item list-group-item-action py-2 ripple"-->
-<!--                >-->
-<!--                    <i class="fas fa-chart-line fa-fw me-3"></i>-->
-<!--                    <span>Analytics</span>-->
-<!--                </a>-->
-<!--                <a-->
+                <a
+                        th:href="@{/admin/add-fee}"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-fee' ? 'router-link-active':''}"
+                        class="list-group-item list-group-item-action py-2 ripple"
+                >
+                    <i class="fas fa-money-bill-wave me-3"></i></i>
+                    <span>Fee Structures</span>
+                </a>
+                <a
+                        th:href="@{/admin/logout}"
+                        class="list-group-item list-group-item-action py-2 ripple"
 
-<!--                        href="#"-->
-<!--                        class="list-group-item list-group-item-action py-2 ripple"-->
-<!--                >-->
-<!--                    <i class="fas fa-chart-line fa-fw me-3"></i>-->
-<!--                    <span>Analytics</span>-->
-<!--                </a>-->
+                >
+                    <i class="fas fa-sign-out-alt me-3"></i>
+                    <span>Logout</span>
+                </a>
 <!--                <a-->
 <!--                        href="#"-->
 <!--                        class="list-group-item list-group-item-action py-2 ripple"-->
