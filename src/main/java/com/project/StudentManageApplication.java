@@ -63,5 +63,6 @@ public class StudentManageApplication implements CommandLineRunner {
 //        teacher.setPhone("8896163869");
 //        teacher.setAddress("GOMTI NAGAR LKO");
 //        this.teacherRepo.save(teacher);
+
     }
 }
