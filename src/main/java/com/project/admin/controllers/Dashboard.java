@@ -1,7 +1,9 @@
 package com.project.admin.controllers;
 
 import com.project.admin.AdminRepo;
+import com.project.student.models.ParentsInfo;
 import com.project.student.models.Student;
+import com.project.student.repo.ParentsInfoRepo;
 import com.project.student.repo.StudentRepo;
 import com.project.teacher.models.Course;
 import com.project.teacher.models.Department;
@@ -44,6 +46,9 @@ public class Dashboard {
     @Autowired
     FeeStructureRepo feeStructureRepo;
 
+    @Autowired
+    ParentsInfoRepo parentsInfoRepo;
+
     @ModelAttribute
     public void addData(Model m, Principal principal) {
         String name = principal.getName();
@@ -54,7 +59,6 @@ public class Dashboard {
     public String index() {
         return "index";
     }
-
 
     @RequestMapping("/home")
     public String dashboard(Model m) {
@@ -95,8 +99,7 @@ public class Dashboard {
         m.addAttribute("title", "Add Department");
         Department department = new Department();
         m.addAttribute("department", department);
-        List<Department> departments = departmentRepo.findAll();
-        m.addAttribute("departments",departments);
+        m.addAttribute("departments",departmentRepo.findAll());
         return "admin/add_department";
     }
 
@@ -104,66 +107,75 @@ public class Dashboard {
     public String addFeeStructure(Model m) {
         System.out.println("call is comming here");
         m.addAttribute("title", "Fee Structure");
-        FeeStructure fee = new FeeStructure();
-        m.addAttribute("fee", fee);
+        m.addAttribute("fee", new FeeStructure());
         m.addAttribute("courses", courseRepo.findAll());
         return "admin/add_fee";
+    }
+
+    @RequestMapping("/parent-info")
+    public String addParentsInfo(Model m){
+        m.addAttribute("title","Parents information");
+        m.addAttribute("parent",new ParentsInfo());
+        return "admin/add_parents_info";
     }
 
     /**
      * request handle from form
      */
-
-//student
+    //student
     @PostMapping("/do-add-student")
-    public String saveStudent(@ModelAttribute("student") Student student, Model m) {
+    public RedirectView saveStudent(@ModelAttribute("student") Student student, Model m) {
         m.addAttribute("message", "addded successfully");
         student.setRole("ROLE_STUDENT");
         student.setPassword("student123");
         studentRepo.save(student);
         System.out.println(student);
-        return "admin/add_student";
+        return new RedirectView("admin/add_student");
     }
-
     //teacher
     @PostMapping("/do-add-teacher")
-    public String saveTeacher(@ModelAttribute("teacher") Teacher teacher, Model m) {
+    public RedirectView saveTeacher(@ModelAttribute("teacher") Teacher teacher, Model m) {
+//        giving role
         teacher.setRole("ROLE_TEACHER");
+//        putting password
         teacher.setPassword("student123");
         teacherRepo.save(teacher);
         m.addAttribute("message", "addded successfully");
-        System.out.println(teacher);
-        List<Department> dep = departmentRepo.findAll();
-        System.out.println(dep);
-        m.addAttribute("departments", dep);
-        return "admin/add_teacher";
+        m.addAttribute("departments", departmentRepo.findAll());
+        m.addAttribute("allTeachers",teacherRepo.findAll());
+        return new RedirectView("admin/add_teacher");
     }
-
     //course
     @PostMapping("/do-add-course")
-    public String saveCourse(@ModelAttribute("course") Course course, Model m) {
+    public RedirectView saveCourse(@ModelAttribute("course") Course course, Model m) {
         m.addAttribute("message", "addded successfully");
         System.out.println(course);
         courseRepo.save(course);
         m.addAttribute("done", true);
-        return "admin/add_course";
+        return new RedirectView( "admin/add_course");
     }
-
     //course
     @PostMapping("/do-add-department")
     public RedirectView saveDepartment(@ModelAttribute("department") Department department, Model m) {
-        m.addAttribute("message", "addded successfully");
+        m.addAttribute("message", "Added successfully");
+        m.addAttribute("departments",departmentRepo.findAll());
         System.out.println(department);
         departmentRepo.save(department);
         return new RedirectView("/admin/add-department");
     }
-
+    //add fee
     @PostMapping("/do-add-fee")
     public RedirectView saveFeeStucture(@ModelAttribute("fee") FeeStructure feeStructure, Model m) {
         m.addAttribute("message", "addded successfully");
         System.out.println(feeStructure);
         feeStructureRepo.save(feeStructure);
+        m.addAttribute("courses", courseRepo.findAll());
          return new RedirectView("admin/add_fee");
     }
-
+    //add parentinfo
+    @PostMapping("/do-add-parents-info")
+    public RedirectView saveParent(@ModelAttribute("parent") ParentsInfo parentsInfo,Model m){
+        parentsInfoRepo.save(parentsInfo);
+        return new RedirectView("/parent-info");
+    }
 }

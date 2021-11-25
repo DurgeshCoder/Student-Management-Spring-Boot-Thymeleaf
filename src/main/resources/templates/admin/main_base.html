@@ -72,6 +72,14 @@
                     <span>Fee Structures</span>
                 </a>
                 <a
+                        th:href="@{/admin/parent-info}"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/parent-info' ? 'router-link-active':''}"
+                        class="list-group-item list-group-item-action py-2 ripple"
+                >
+                    <i class="fas fa-user-alt me-3"></i></i>
+                    <span>Parents</span>
+                </a>
+                <a
                         th:href="@{/admin/logout}"
                         class="list-group-item list-group-item-action py-2 ripple"
 
