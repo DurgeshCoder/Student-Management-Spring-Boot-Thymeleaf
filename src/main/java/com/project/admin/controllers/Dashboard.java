@@ -80,8 +80,10 @@ public class Dashboard {
     public String addTeacher(Model m) {
         m.addAttribute("title", "Add Teacher");
         m.addAttribute("teacher", new Teacher());
-        m.addAttribute("departments", departmentRepo.findAll());
-        m.addAttribute("allTeachers",teacherRepo.findAll());
+        List<Department> departments = departmentRepo.findAll();
+        m.addAttribute("departments",departments);
+        List<Teacher> teachers = teacherRepo.findAll();
+        m.addAttribute("allTeachers",teachers);
         return "admin/add_teacher";
     }
 
@@ -90,7 +92,8 @@ public class Dashboard {
         m.addAttribute("title", "Add Course");
         Course course = new Course();
         m.addAttribute("course", course);
-        m.addAttribute("courses",courseRepo.findAll());
+        List<Course> courses = courseRepo.findAll();
+        m.addAttribute("courses",courses);
         return "admin/add_course";
     }
 
@@ -112,10 +115,11 @@ public class Dashboard {
         return "admin/add_fee";
     }
 
-    @RequestMapping("/parent-info")
+    @RequestMapping("parent-info")
     public String addParentsInfo(Model m){
         m.addAttribute("title","Parents information");
-        m.addAttribute("parent",new ParentsInfo());
+        ParentsInfo p = new ParentsInfo();
+        m.addAttribute("parent",p);
         return "admin/add_parents_info";
     }
 
@@ -152,7 +156,7 @@ public class Dashboard {
         System.out.println(course);
         courseRepo.save(course);
         m.addAttribute("done", true);
-        return new RedirectView( "admin/add_course");
+        return new RedirectView( "add-course");
     }
     //course
     @PostMapping("/do-add-department")
@@ -161,7 +165,7 @@ public class Dashboard {
         m.addAttribute("departments",departmentRepo.findAll());
         System.out.println(department);
         departmentRepo.save(department);
-        return new RedirectView("/admin/add-department");
+        return new RedirectView("add-department");
     }
     //add fee
     @PostMapping("/do-add-fee")
@@ -169,13 +173,14 @@ public class Dashboard {
         m.addAttribute("message", "addded successfully");
         System.out.println(feeStructure);
         feeStructureRepo.save(feeStructure);
-        m.addAttribute("courses", courseRepo.findAll());
-         return new RedirectView("admin/add_fee");
+        List<Course> courses = courseRepo.findAll();
+        m.addAttribute("courses", courses);
+         return new RedirectView("add-fee");
     }
     //add parentinfo
     @PostMapping("/do-add-parents-info")
     public RedirectView saveParent(@ModelAttribute("parent") ParentsInfo parentsInfo,Model m){
         parentsInfoRepo.save(parentsInfo);
-        return new RedirectView("/parent-info");
+        return new RedirectView("parent-info");
     }
 }
