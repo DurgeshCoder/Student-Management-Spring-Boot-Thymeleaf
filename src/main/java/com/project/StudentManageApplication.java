@@ -54,14 +54,14 @@ public class StudentManageApplication implements CommandLineRunner {
 //        student.setPhone("8896163869");
 //        student.setAddress("GOMTI NAGAR LKO");
 //        this.studentRepo.save(student);
-        
-        Teacher teacher=new Teacher();
-        teacher.setTeacherName("Samar");
-        teacher.setPassword(this.bCryptPasswordEncoder.encode("samar"));
-        teacher.setEmail("samar@gmail.com");
-        teacher.setRole("ROLE_TEACHER");
-        teacher.setPhone("8896163869");
-        teacher.setAddress("GOMTI NAGAR LKO");
-        this.teacherRepo.save(teacher);
+
+//        Teacher teacher=new Teacher();
+//        teacher.setTeacherName("Samar");
+//        teacher.setPassword(this.bCryptPasswordEncoder.encode("samar"));
+//        teacher.setEmail("samar@gmail.com");
+//        teacher.setRole("ROLE_TEACHER");
+//        teacher.setPhone("8896163869");
+//        teacher.setAddress("GOMTI NAGAR LKO");
+//        this.teacherRepo.save(teacher);
     }
 }
