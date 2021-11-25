@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --backcolorstart: #2c247a;
+    --backcolorend: #a7ade0;
+    --theme1background:#2b6185;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif
+}
+
+
+
+/* .container {
+    margin-top: 100px
+}
+
+.container .row .col-lg-4 {
+    display: flex;
+    justify-content: center
+} */
+
+.card1 {
+    position: relative;
+    padding: 0;
+    margin: 0 !important;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 280px;
+    max-height: 340px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2)
+}
+
+.card1 .card1-image {
+    width: 100%;
+    max-height: 340px
+}
+
+.card1 .card1-image img {
+    width: 100%;
+    max-height: 340px;
+    object-fit: cover
+}
+
+.card1 .card1-content {
+    position: absolute;
+    bottom: -180px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    min-height: 140px;
+    width: 100%;
+    transition: bottom .4s ease-in;
+    box-shadow: 0 -10px 10px rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2)
+}
+
+.card1:hover .card1-content {
+    bottom: 0px
+}
+
+.card1:hover .card1-content h4,
+.card1:hover .card1-content h5 {
+    transform: translateY(10px);
+    opacity: 1
+}
+
+.card1 .card1-content h4,
+.card1 .card1-content h5 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    transition: 0.8s;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-40px);
+    transition-delay: 0.2s
+}
+
+.card1 .card1-content h5 {
+    transition: 0.5s;
+    font-weight: 200;
+    font-size: 0.8rem;
+    letter-spacing: 2px
+}
+
+.card1 .card1-content .social-icons {
+    list-style: none;
+    padding: 0
+}
+
+.card1 .card1-content .social-icons li {
+    margin: 10px;
+    transition: 0.5s;
+    transition-delay: calc(0.15s * var(--i));
+    transform: translateY(50px)
+}
+
+.card1:hover .card1-content .social-icons li {
+    transform: translateY(20px)
+}
+
+.card1 .card1-content .social-icons li a {
+    color: #fff
+}
+
+.card1 .card1-content .social-icons li a span {
+    font-size: 1.3rem
+}
+
+@media(max-width: 991.5px) {
+    .container {
+        margin-top: 20px
+    }
+
+    .container .row .col-lg-4 {
+        margin: 20px 0px
+    }
+}
+
+
+
+/* --------------- */
+
+
+
+.divider-dark {
+  width: 100%;
+  height: 0.2px;
+  margin: 15px 0px;
+  background-color: #e2e2e2;
+}
+
+.bg-white-own {
+  background: #e2e2e2;
+  background-image: none;
+}
+
+.body-padding {
+  padding: 0px 0px;
+}
+
+.bg_primary {
+  background: var(--theme1background) !important;
+
+  color: white !important;
+}
+
+/* .text_primary {
+} */
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  background: var(--theme1background) !important;
+  color: white !important;
+  border: none;
+}
+
+.router-link-active {
+  background: var(--theme1background) !important;
+  color: white;
+}
+
+.btn-danger {
+  background: var(--theme1background) !important;
+  color: white !important;
+  margin: 5px;
+}
+
+.login_background {
+  background: url("./assets/background.jpg");
+  position: fixed;
+
+  filter: blur(8px);
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.container {
+  width: 100% !important;
+}
+
+.container-fluid {
+  padding-top: 0px;
+  padding-left: 0px;
+}
+/* --------- */
+
+
+
+
+
+
+
+
+
+

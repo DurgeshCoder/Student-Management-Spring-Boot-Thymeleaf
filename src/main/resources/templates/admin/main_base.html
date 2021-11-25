@@ -1,0 +1,148 @@
+<!DOCTYPE html  >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="../.././static/css/mdb.min.css" th:href="@{/css/mdb.min.css}">
+    <link rel="stylesheet" href="../.././static/css/style1.css" th:href="@{/css/style1.css}" >
+    <link rel="stylesheet" href="../.././static/css/style.css" th:href="@{/css/style.css}">
+    <title th:text="${title}" >Document</title>
+</head>
+<body>
+<!--Main Navigation-->
+<header>
+
+    <!-- Sidebar -->
+    <nav
+            id="sidebarMenu"
+            class="collapse d-lg-block sidebar collapse bg-white"
+    >
+        <div class="position-sticky">
+            <div class="list-group list-group-flush mx-2 mt-4">
+                <!-- active -->
+                <a
+                        th:href="@{/admin/home}"
+                        class="list-group-item list-group-item-action py-2 ripple"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/home' ? 'router-link-active':''}"
+                >
+                    <i class="far fa-id-badge me-2"></i>
+                    <span>Profile</span>
+                </a>
+                <a
+                        th:href="@{/admin/add-student}"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-student' ? 'router-link-active':''}"
+                        class="list-group-item list-group-item-action py-2 ripple"
+                ><i class="fas fa-user-graduate me-2"></i><span>Add Student</span></a
+                >
+                <a
+                        th:href="@{/admin/add-teacher}"
+                        class="list-group-item list-group-item-action py-2 ripple"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-teacher' ? 'router-link-active':''}"
+                >
+                    <i class="fas fa-chalkboard-teacher me-2"></i>
+                    <span>Add Teacher</span>
+                </a>
+                <a
+                        th:href="@{/admin/add-department}"
+                        class="list-group-item list-group-item-action py-2 ripple"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-department' ? 'router-link-active':''}"
+                >
+                    <i class="fas fa-chart-line fa-fw me-2"></i>
+                    <span>Add Department</span>
+                </a>
+                <a
+                        th:href="@{/admin/add-course}"
+                        class="list-group-item list-group-item-action py-2 ripple"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-course' ? 'router-link-active':''}"
+                >
+                    <i class="fas fa-chart-line fa-fw me-2"></i>
+                    <span>Add Course</span>
+                </a>
+<!--                <a-->
+<!--                        href="#"-->
+<!--                        class="list-group-item list-group-item-action py-2 ripple"-->
+<!--                >-->
+<!--                    <i class="fas fa-chart-line fa-fw me-3"></i>-->
+<!--                    <span>Analytics</span>-->
+<!--                </a>-->
+<!--                <a-->
+
+<!--                        href="#"-->
+<!--                        class="list-group-item list-group-item-action py-2 ripple"-->
+<!--                >-->
+<!--                    <i class="fas fa-chart-line fa-fw me-3"></i>-->
+<!--                    <span>Analytics</span>-->
+<!--                </a>-->
+<!--                <a-->
+<!--                        href="#"-->
+<!--                        class="list-group-item list-group-item-action py-2 ripple"-->
+<!--                >-->
+<!--                    <i class="fas fa-chart-line fa-fw me-3"></i>-->
+<!--                    <span>Analytics</span>-->
+<!--                </a>-->
+
+            </div>
+        </div>
+    </nav>
+    <!-- Sidebar -->
+
+    <!-- Navbar -->
+    <nav
+            id="main-navbar"
+            class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+
+    >
+        <!-- Container wrapper -->
+        <div class="container-fluid py-0" >
+            <!-- Toggle button -->
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#sidebarMenu"
+                    aria-controls="sidebarMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">
+                <h2 class="offset-md-4">ERP</h2>
+            </a>
+            <!-- Right links -->
+            <ul class="navbar-nav ms-auto d-flex flex-row">
+                <!-- Notification dropdown -->
+                <!-- Icon -->
+                <li class="nav-item me-3 me-lg-0">
+                    <a class="nav-link p-0" href="#">
+                        <div >
+                            <button class="btn" style="background-color: #074269; color: wheat;">logout</button>
+                            <br>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px">
+    <div class="container pt-4">
+        <!-- put your contnt here -->
+        <div th:replace="${content}"></div>
+        <!--  -->
+    </div>
+</main>
+<!--Main layout-->
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/main_base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<section>
+  <div class="card">
+    <div class="card-header bg_primary">
+      <h4>Add Student</h4>
+    </div>
+    <form id="login-form" class="form" th:action="@{/admin/do-add-student}" th:object="${student}" action="#"
+          method="post">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="studentName">Student Name</label>
+              <input
+                      id="studentName"
+                      name="studentName"
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter here"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                      id="email"
+                      name="email"
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter here"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="phone">Contect Info</label>
+              <input
+                      id="phone"
+                      name="phone"
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter here"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input
+                      id="address"
+                      name="address"
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter here"
+              />
+            </div>
+          </div>
+        </div>
+<!--        <div class="row">-->
+<!--          <div class="col-md-6">-->
+<!--            <div class="form-group">-->
+<!--              <label for="city">City</label>-->
+<!--              <input-->
+<!--                      id="city"-->
+<!--                      type="text"-->
+<!--                      class="form-control"-->
+<!--                      placeholder="Enter here"-->
+<!--              />-->
+<!--            </div>-->
+
+<!--          </div>-->
+<!--          <div class="col-md-6">-->
+<!--            <div class="form-group">-->
+<!--              <label for="qualification">course</label>-->
+<!--              <input-->
+<!--                      id="qualification"-->
+<!--                      type="text"-->
+<!--                      class="form-control"-->
+<!--                      placeholder="Enter here"-->
+<!--              />-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-2 mx-auto container text-center">
+            <input class="btn btn-primary btn-sm text-uppercase"  type="submit">
+            </input>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  </div>
+
+
+
+</section>
+</body>
+</html>
