@@ -1,27 +1,25 @@
-package com.project.student.service;
-
-import com.project.student.models.Student;
-import com.project.student.repo.StudentRepo;
+package com.project.teacher.service;
+import com.project.teacher.models.Teacher;
+import com.project.teacher.repo.TeacherRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
 @Service
-public class StudentService implements UserDetailsService {
+public class TeacherService  implements UserDetailsService {
 
     @Autowired
-    StudentRepo studentRepo;
+    TeacherRepo teacherRepo;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        Student student = this.studentRepo.findByEmail(username);
-        if (student == null) {
+        Teacher teacher = this.teacherRepo.findByEmail(username);
+        if (teacher == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        return student;
+        return teacher;
     }
 }

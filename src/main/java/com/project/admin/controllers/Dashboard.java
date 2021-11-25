@@ -122,7 +122,6 @@ public class Dashboard {
         m.addAttribute("parent",p);
         return "admin/add_parents_info";
     }
-
     /**
      * request handle from form
      */
@@ -181,6 +180,7 @@ public class Dashboard {
     @PostMapping("/do-add-parents-info")
     public RedirectView saveParent(@ModelAttribute("parent") ParentsInfo parentsInfo,Model m){
         parentsInfoRepo.save(parentsInfo);
+        m.addAttribute("parents",new ParentsInfo());
         return new RedirectView("parent-info");
     }
 }

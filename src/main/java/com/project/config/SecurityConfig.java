@@ -2,6 +2,7 @@ package com.project.config;
 
 import com.project.admin.service.AdminService;
 import com.project.student.service.StudentService;
+import com.project.teacher.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -107,20 +108,65 @@ public class SecurityConfig {
                     .loginPage("/student-login")
                     .loginProcessingUrl("/student/dologin")
                     .defaultSuccessUrl("/student/home")
-
                     .and()
                     .logout()
                     .logoutUrl("/student/logout")
                     .deleteCookies("JSESSIONID")
-
                     .and()
                     .exceptionHandling()
                     .accessDeniedPage("/403")
 
                     .and()
                     .csrf().disable();
+        }
 
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.authenticationProvider(this.authenticationProvider());
 
+        }
+    }
+
+    @Configuration
+    @Order(3)
+    public class TeacherConfig extends WebSecurityConfigurerAdapter {
+
+        @Autowired
+        public BCryptPasswordEncoder bCryptPasswordEncoder;
+
+        @Autowired
+        public TeacherService teacherService;
+
+        public DaoAuthenticationProvider authenticationProvider() {
+            DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+            daoAuthenticationProvider.setUserDetailsService(this.teacherService);
+            daoAuthenticationProvider.setPasswordEncoder(this.bCryptPasswordEncoder);
+            return daoAuthenticationProvider;
+        }
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+
+            http.antMatcher("/teacher/**")
+                    .authorizeRequests()
+                    .anyRequest()
+                    .hasRole("TEACHER")
+
+                    .and()
+                    .formLogin()
+                    .loginPage("/teacher-login")
+                    .loginProcessingUrl("/teacher/dologin")
+                    .defaultSuccessUrl("/teacher/home")
+                    .and()
+                    .logout()
+                    .logoutUrl("/teacher/logout")
+                    .deleteCookies("JSESSIONID")
+                    .and()
+                    .exceptionHandling()
+                    .accessDeniedPage("/403")
+
+                    .and()
+                    .csrf().disable();
         }
 
         @Override

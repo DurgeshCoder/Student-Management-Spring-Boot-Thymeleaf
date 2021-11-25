@@ -4,6 +4,8 @@ import com.project.admin.AdminRepo;
 import com.project.admin.models.Admin;
 import com.project.student.models.Student;
 import com.project.student.repo.StudentRepo;
+import com.project.teacher.models.Teacher;
+import com.project.teacher.repo.TeacherRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +27,9 @@ public class StudentManageApplication implements CommandLineRunner {
     @Autowired
     public StudentRepo studentRepo;
 
+    @Autowired
+    public TeacherRepo teacherRepo;
+
     public static void main(String[] args) {
         SpringApplication.run(StudentManageApplication.class, args);
     }
@@ -32,7 +37,6 @@ public class StudentManageApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("server running....");
-
 //        Admin admin = new Admin();
 //        admin.setEmail("admin@gmail.com");
 //        admin.setPassword(this.bCryptPasswordEncoder.encode("durgesh"));
@@ -49,9 +53,15 @@ public class StudentManageApplication implements CommandLineRunner {
 //        student.setRole("ROLE_STUDENT");
 //        student.setPhone("8896163869");
 //        student.setAddress("GOMTI NAGAR LKO");
-//
 //        this.studentRepo.save(student);
-
-
+        
+        Teacher teacher=new Teacher();
+        teacher.setTeacherName("Samar");
+        teacher.setPassword(this.bCryptPasswordEncoder.encode("samar"));
+        teacher.setEmail("samar@gmail.com");
+        teacher.setRole("ROLE_TEACHER");
+        teacher.setPhone("8896163869");
+        teacher.setAddress("GOMTI NAGAR LKO");
+        this.teacherRepo.save(teacher);
     }
 }
