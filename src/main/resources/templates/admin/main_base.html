@@ -34,15 +34,21 @@
                     <span>Profile</span>
                 </a>
                 <a
-                        th:href="@{/admin/add-student}"
-                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-student' ? 'router-link-active':''}"
+                        th:href="@{/admin/add-student/200}"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-student/200'
+                        || #httpServletRequest.getRequestURI() == '/admin/add-student/403'
+                        || #httpServletRequest.getRequestURI() == '/admin/add-student/503'
+                          ? 'router-link-active':''}"
                         class="list-group-item list-group-item-action py-2 ripple"
                 ><i class="fas fa-user-graduate me-2"></i><span>Students</span></a
                 >
                 <a
-                        th:href="@{/admin/add-teacher}"
+                        th:href="@{/admin/add-teacher/200}"
                         class="list-group-item list-group-item-action py-2 ripple"
-                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-teacher' ? 'router-link-active':''}"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/admin/add-teacher/200'
+                         ||#httpServletRequest.getRequestURI() == '/admin/add-teacher/403'
+                         ||#httpServletRequest.getRequestURI() == '/admin/add-teacher/503'
+                         ? 'router-link-active':''}"
                 >
                     <i class="fas fa-chalkboard-teacher me-2"></i>
                     <span>Teachers</span>

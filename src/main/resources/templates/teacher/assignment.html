@@ -50,7 +50,6 @@
                       name="subject"
                       id="subject"
               >
-                <option><span >choose</span></option>
                 <option th:each="choice : ${subjects}"
                         th:value="${choice.getSubject_id()}"
                 ><span th:text="${choice.getSubjectName()}"></span></option>

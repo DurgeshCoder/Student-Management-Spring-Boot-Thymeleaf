@@ -17,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -54,7 +52,7 @@ public class Dashboard {
     ParentsInfoRepo parentsInfoRepo;
 
     @ModelAttribute
-    public void addData(Model m, Principal principal) {
+    public void addData(  Model m, Principal principal) {
         String name = principal.getName();
         m.addAttribute("user", this.adminRepo.findByEmail(name));
     }
@@ -68,10 +66,15 @@ public class Dashboard {
         return "admin/home";
     }
 
-    @RequestMapping("/add-student")
-    public String addStudent(Model m, Principal principal) {
+    @RequestMapping("/add-student/{action}")
+    public String addStudent(@PathVariable(name="action",required = false) String action,
+                             Model m,
+                             Principal principal) {
+        System.out.println(action);
+        m.addAttribute("error",action);
         String name = principal.getName();
         m.addAttribute("user", this.adminRepo.findByEmail(name));
+
         m.addAttribute("title", "Add Student");
         Student student = new Student();
         m.addAttribute("student", student);
@@ -80,9 +83,28 @@ public class Dashboard {
         return "admin/add_student";
     }
 
-    @RequestMapping("/add-teacher")
-    public String addTeacher(Model m, Principal principal) {
+    @PostMapping("/do-add-student")
+    public RedirectView saveStudent(@ModelAttribute("student") Student student) {
+        if(student!=null && student.getCourse()!=null) {
+            Student s = studentRepo.findByEmail(student.getEmail());
+            if(s==null){
+                student.setRole("ROLE_STUDENT");
+                student.setPassword(this.bCryptPasswordEncoder.encode("student@123"));
+                studentRepo.save(student);
+                return new RedirectView("add-student/200");
+            }
+            else{
+                return new RedirectView("add-student/403");
+            }
+        }
+        return new RedirectView("add-student/503");
+    }
+
+    @RequestMapping("/add-teacher/{action}")
+    public String addTeacher(@PathVariable(name="action",required = false) String action,
+                             Model m, Principal principal) {
         String name = principal.getName();
+        m.addAttribute("error",action);
         m.addAttribute("user", this.adminRepo.findByEmail(name));
         m.addAttribute("title", "Add Teacher");
         m.addAttribute("teacher", new Teacher());
@@ -97,16 +119,17 @@ public class Dashboard {
     //teacher
     @PostMapping("/do-add-teacher")
     public RedirectView saveTeacher(@ModelAttribute("teacher") Teacher data, Model m) {
-        Teacher t = teacherRepo.findByEmail(data.getEmail());
-
-        if(t==null){
-            data.setRole("ROLE_TEACHER");
-            data.setPassword(this.bCryptPasswordEncoder.encode("teacher@123"));
-            teacherRepo.save(data);
+        if(data!=null) {
+            Teacher t = teacherRepo.findByEmail(data.getEmail());
+            if (t == null) {
+                data.setRole("ROLE_TEACHER");
+                data.setPassword(this.bCryptPasswordEncoder.encode("teacher@123"));
+                teacherRepo.save(data);
+                return new RedirectView("add-teacher/200");
+            }
+            return new RedirectView("add-teacher/403");
         }
-        else
-            m.addAttribute("message","2");
-        return new RedirectView("add-teacher");
+        return new RedirectView("add-teacher/503");
     }
 
     @RequestMapping("/add-course")
@@ -121,6 +144,14 @@ public class Dashboard {
         return "admin/add_course";
     }
 
+    @PostMapping("/do-add-course")
+    public RedirectView saveCourse(@ModelAttribute("course") Course course, Model m) {
+        if(course!=null) {
+            courseRepo.save(course);
+        }
+        return new RedirectView( "add-course");
+    }
+
     @RequestMapping("/add-department")
     public String addDepartment(Model m, Principal principal) {
         String name = principal.getName();
@@ -131,6 +162,14 @@ public class Dashboard {
         m.addAttribute("departments",departmentRepo.findAll());
         return "admin/add_department";
     }
+    @PostMapping("/do-add-department")
+    public RedirectView saveDepartment(@ModelAttribute("department") Department department, Model m) {
+        if(department!=null) {
+            departmentRepo.save(department);
+        }
+        return new RedirectView("add-department");
+    }
+
 
     @RequestMapping("/add-fee")
     public String addFeeStructure(Model m, Principal principal) {
@@ -145,6 +184,14 @@ public class Dashboard {
         return "admin/add_fee";
     }
 
+    @PostMapping("/do-add-fee")
+    public RedirectView saveFeeStucture(@ModelAttribute("fee") FeeStructure feeStructure, Model m) {
+        if(feeStructure!=null) {
+            feeStructureRepo.save(feeStructure);
+        }
+        return new RedirectView("add-fee");
+    }
+
     @RequestMapping("/parent-info")
     public String addParentsInfo(Model m, Principal principal) {
         String name = principal.getName();
@@ -155,47 +202,13 @@ public class Dashboard {
         m.addAttribute("parent",p);
         return "admin/add_parents_info";
     }
-    /**
-     * request handle from form
-     */
-    //student
-    @PostMapping("/do-add-student")
-    public RedirectView saveStudent(@ModelAttribute("student") Student student) {
 
-        student.setRole("ROLE_STUDENT");
-        student.setPassword(this.bCryptPasswordEncoder.encode("student@123"));
-        studentRepo.save(student);
-        return new RedirectView("add-student");
-    }
-
-    //course
-    @PostMapping("/do-add-course")
-    public RedirectView saveCourse(@ModelAttribute("course") Course course, Model m) {
-        m.addAttribute("message", "addded successfully");
-        System.out.println(course);
-        courseRepo.save(course);
-        m.addAttribute("done", true);
-        return new RedirectView( "add-course");
-    }
-    //course
-    @PostMapping("/do-add-department")
-    public RedirectView saveDepartment(@ModelAttribute("department") Department department, Model m) {
-        m.addAttribute("message", "Added successfully");
-        m.addAttribute("departments",departmentRepo.findAll());
-        System.out.println(department);
-        departmentRepo.save(department);
-        return new RedirectView("add-department");
-    }
-    //add fee
-    @PostMapping("/do-add-fee")
-    public RedirectView saveFeeStucture(@ModelAttribute("fee") FeeStructure feeStructure, Model m) {
-        feeStructureRepo.save(feeStructure);
-         return new RedirectView("add-fee");
-    }
     //add parentinfo
     @PostMapping("/do-add-parents-info")
     public RedirectView saveParent(@ModelAttribute("parent") ParentsInfo parentsInfo,Model m){
-        parentsInfoRepo.save(parentsInfo);
+        if(parentsInfo!=null) {
+            parentsInfoRepo.save(parentsInfo);
+        }
         return new RedirectView("parent-info");
     }
 }

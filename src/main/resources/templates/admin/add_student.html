@@ -13,6 +13,13 @@
     </div>
     <form id="login-form" class="form" th:action="@{/admin/do-add-student}" th:object="${student}" action="#"
           method="post">
+      <div th:if="${error}=='403'" class="alert alert-danger" role="alert">
+        Email already exist.
+      </div>
+      <div th:if="${error}=='503'" class="alert alert-danger" role="alert">
+        fill the fields.
+      </div>
+
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
@@ -24,6 +31,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
+                      required
               />
             </div>
           </div>
@@ -36,6 +44,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
+                      required
               />
             </div>
           </div>
@@ -50,6 +59,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
+                      required
               />
             </div>
           </div>
@@ -62,6 +72,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
+                      required
               />
             </div>
           </div>
@@ -72,6 +83,7 @@
                       class="form-control"
                       name="course"
                       id="course"
+                      required
               >
                 <option th:each="choice : ${courses}"
                         th:value="${choice.getCourse_id()}"
@@ -80,7 +92,6 @@
             </div>
           </div>
         </div>
-
       </div>
       <div class="card-footer">
         <div class="row">
