@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="student/main_base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<section>
+
+  <div class="card mt-4">
+    <div class="card-header bg_primary">
+      <h4>All Teachers</h4>
+    </div>
+    <div class="card-body" >
+      <table class="table table-bordered table-hover">
+        <thead>
+        <th>Fee ID </th>
+        <th>Course Name</th>
+        <th>Fee Amount</th>
+        <th>Discount</th>
+        </thead>
+        <tbody>
+        <tr th:each="fee:${fees}" >
+          <td th:text="${fee.getFee_id()}"></td>
+          <td th:text="${fee.getCourse_id().getCourse_name()}"></td>
+          <td th:text="${fee.getFee()}"></td>
+          <td th:text="${fee.getDicount()}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+</section>
+</body>
+</html>

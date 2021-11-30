@@ -37,12 +37,13 @@ public class StudentManageApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("server running....");
+
 //        Admin admin = new Admin();
 //        admin.setEmail("admin@gmail.com");
 //        admin.setPassword(this.bCryptPasswordEncoder.encode("durgesh"));
 //        admin.setContactNumber("8896163869");
 //        admin.setName("Durgesh");
-//        admin.setRole("ADMIN");
+//        admin.setRole("ROLE_ADMIN");
 //
 //        this.adminRepo.save(admin);
 //
@@ -58,7 +59,7 @@ public class StudentManageApplication implements CommandLineRunner {
 //        Teacher teacher=new Teacher();
 //        teacher.setTeacherName("Samar");
 //        teacher.setPassword(this.bCryptPasswordEncoder.encode("samar"));
-//        teacher.setEmail("samar@gmail.com");
+//        teacher.setEmail("sam@gmail.com");
 //        teacher.setRole("ROLE_TEACHER");
 //        teacher.setPhone("8896163869");
 //        teacher.setAddress("GOMTI NAGAR LKO");

@@ -1,0 +1,144 @@
+<!DOCTYPE html  >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+        href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossorigin="anonymous"/>
+  <link rel="stylesheet" href="../.././static/css/mdb.min.css" th:href="@{/css/mdb.min.css}">
+  <link rel="stylesheet" href="../.././static/css/style1.css" th:href="@{/css/style1.css}" >
+  <link rel="stylesheet" href="../.././static/css/style.css" th:href="@{/css/style.css}">
+  <title th:text="${title}" >Document</title>
+</head>
+<body>
+<!--Main Navigation-->
+<header>
+
+  <!-- Sidebar -->
+  <nav
+          id="sidebarMenu"
+          class="collapse d-lg-block sidebar collapse bg-white"
+  >
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-2 mt-4">
+        <!-- active -->
+        <a
+                th:href="@{/student/home}"
+                class="list-group-item list-group-item-action py-2 ripple"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/student/home' ? 'router-link-active':''}"
+        >
+          <i class="far fa-id-badge me-3"></i>
+          <span>Profile</span>
+        </a>
+        <a
+                th:href="@{/student/subject}"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/student/subject' ? 'router-link-active':''}"
+                class="list-group-item list-group-item-action py-2 ripple"
+        ><i class="fas fa-book me-3"></i><span>Subject</span></a
+        >
+
+        </a>
+
+        <a
+                th:href="@{/student/time-table}"
+                class="list-group-item list-group-item-action py-2 ripple"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/student/time-table' ? 'router-link-active':''}"
+        >
+          <i class="fas fa-table me-3"></i>
+          <span>Timetable</span>
+        </a>
+
+
+        <a
+                th:href="@{/student/assignment}"
+                class="list-group-item list-group-item-action py-2 ripple"
+        >
+          <i class="fas fa-user-graduate me-3"></i>
+          <span>Assignment</span>
+        </a>
+
+        <a
+                th:href="@{/student/fee}"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/student/fee' ? 'router-link-active':''}"
+                class="list-group-item list-group-item-action py-2 ripple"
+        >
+          <i class="fas fa-money-bill-wave me-3"></i></i>
+          <span>Fee Structures</span>
+        </a>
+
+        <a
+                th:href="@{/student/logout}"
+                class="list-group-item list-group-item-action py-2 ripple"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/student/logout' ? 'router-link-active':''}"
+        >
+          <i class="fas fa-sign-out-alt me-3"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav
+          id="main-navbar"
+          class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+  >
+    <!-- Container wrapper -->
+    <div class="container-fluid py-0" >
+      <!-- Toggle button -->
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#sidebarMenu"
+              aria-controls="sidebarMenu"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Brand -->
+      <a class="navbar-brand offset-md-4" href="#">
+        <h2 style="color: #074269;" >Student Management System</h2>
+      </a>
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Notification dropdown -->
+        <!-- Icon -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <div style="color: #074269;" >
+              <h3> Student </h3>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <div class="bg-light" >
+              <h3 th:text="${user.getStudentName()}"></h3>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px">
+  <div class="container pt-4">
+    <!-- put your contnt here -->
+    <div th:replace="${content}"></div>
+    <!--  -->
+  </div>
+</main>
+<!--Main layout-->
+</body>
+</html>

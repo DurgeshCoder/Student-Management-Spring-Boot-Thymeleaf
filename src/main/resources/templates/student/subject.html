@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="student/main_base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<section>
+
+  <div class="card mt-4">
+    <div class="card-header bg_primary">
+      <h4>Your All Subject</h4>
+    </div>
+    <div class="card-body" >
+      <table class="table table-bordered table-hover">
+        <thead>
+        <th>Subject ID </th>
+        <th>Subject Name</th>
+        <th>Course</th>
+        </thead>
+        <tbody>
+        <tr th:each="subject:${subjects}" >
+          <td th:text="${subject.getSubject_id()}"></td>
+          <td th:text="${subject.getSubjectName()}"></td>
+          <td th:text="${subject.getCourse().getCourse_name()}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+</body>
+</html>

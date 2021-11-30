@@ -40,7 +40,6 @@
             </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
@@ -66,32 +65,22 @@
               />
             </div>
           </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="course">Course Name</label>
+              <select
+                      class="form-control"
+                      name="course"
+                      id="course"
+              >
+                <option th:each="choice : ${courses}"
+                        th:value="${choice.getCourse_id()}"
+                ><span th:text="${choice.getCourse_name()}"></span></option>
+              </select>
+            </div>
+          </div>
         </div>
-<!--        <div class="row">-->
-<!--          <div class="col-md-6">-->
-<!--            <div class="form-group">-->
-<!--              <label for="city">City</label>-->
-<!--              <input-->
-<!--                      id="city"-->
-<!--                      type="text"-->
-<!--                      class="form-control"-->
-<!--                      placeholder="Enter here"-->
-<!--              />-->
-<!--            </div>-->
 
-<!--          </div>-->
-<!--          <div class="col-md-6">-->
-<!--            <div class="form-group">-->
-<!--              <label for="qualification">course</label>-->
-<!--              <input-->
-<!--                      id="qualification"-->
-<!--                      type="text"-->
-<!--                      class="form-control"-->
-<!--                      placeholder="Enter here"-->
-<!--              />-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
       </div>
       <div class="card-footer">
         <div class="row">
@@ -104,6 +93,32 @@
     </form>
 
   </div>
+
+
+  <div class="card mt-4">
+    <div class="card-header bg_primary">
+      <h4>All Students</h4>
+    </div>
+    <div class="card-body" >
+      <table class="table table-bordered table-hover">
+        <thead>
+        <th>Student Name</th>
+        <th>Contect no</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Course</th>
+        </thead>
+        <tbody>
+        <tr th:each="student:${allStudents}" >
+          <td th:text="${student.getStudentName()}"></td>
+          <td th:text="${student.getAddress()}"></td>
+          <td th:text="${student.getEmail()}"></td>
+          <td th:text="${student.getAddress()}"></td>
+          <td th:text="${student.getCourse().getCourse_name()}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 

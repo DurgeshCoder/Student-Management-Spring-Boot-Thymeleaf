@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="admin/main_base::layout(~{::section})">
+      th:replace="teacher/main_base::layout(~{::section})">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -9,18 +9,18 @@
 <section>
   <div class="card">
     <div class="card-header bg_primary">
-      <h4>Add Parents</h4>
+      <h4>Add Student</h4>
     </div>
-    <form id="login-form" class="form" th:action="@{/admin/do-add-parents-info}" th:object="${parent}" action="#"
+    <form id="login-form" class="form" th:action="@{/teacher/do-add-student}" th:object="${student}" action="#"
           method="post">
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="studentName">Student Name</label>
               <input
-                      id="name"
-                      name="name"
+                      id="studentName"
+                      name="studentName"
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
@@ -44,10 +44,10 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="contectNo">Contect Info</label>
+              <label for="phone">Contect Info</label>
               <input
-                      id="contectNo"
-                      name="contectNo"
+                      id="phone"
+                      name="phone"
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
@@ -67,31 +67,31 @@
             </div>
           </div>
         </div>
-<!--                <div class="row">-->
-<!--                  <div class="col-md-6">-->
-<!--                    <div class="form-group">-->
-<!--                      <label for="city">City</label>-->
-<!--                      <input-->
-<!--                              id="city"-->
-<!--                              type="text"-->
-<!--                              class="form-control"-->
-<!--                              placeholder="Enter here"-->
-<!--                      />-->
-<!--                    </div>-->
+        <!--        <div class="row">-->
+        <!--          <div class="col-md-6">-->
+        <!--            <div class="form-group">-->
+        <!--              <label for="city">City</label>-->
+        <!--              <input-->
+        <!--                      id="city"-->
+        <!--                      type="text"-->
+        <!--                      class="form-control"-->
+        <!--                      placeholder="Enter here"-->
+        <!--              />-->
+        <!--            </div>-->
 
-<!--                  </div>-->
-<!--                  <div class="col-md-6">-->
-<!--                    <div class="form-group">-->
-<!--                      <label for="qualification">course</label>-->
-<!--                      <input-->
-<!--                              id="qualification"-->
-<!--                              type="text"-->
-<!--                              class="form-control"-->
-<!--                              placeholder="Enter here"-->
-<!--                      />-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
+        <!--          </div>-->
+        <!--          <div class="col-md-6">-->
+        <!--            <div class="form-group">-->
+        <!--              <label for="qualification">course</label>-->
+        <!--              <input-->
+        <!--                      id="qualification"-->
+        <!--                      type="text"-->
+        <!--                      class="form-control"-->
+        <!--                      placeholder="Enter here"-->
+        <!--              />-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
       <div class="card-footer">
         <div class="row">
@@ -108,29 +108,27 @@
 
   <div class="card mt-4">
     <div class="card-header bg_primary">
-      <h4>All Teachers</h4>
+      <h4>All Students</h4>
     </div>
     <div class="card-body" >
       <table class="table table-bordered table-hover">
         <thead>
-        <th>Teacher Name</th>
+        <th>Student Name</th>
         <th>Contect no</th>
         <th>Email</th>
         <th>Address</th>
         </thead>
         <tbody>
-        <tr th:each="parent:${allparents}" >
-          <td th:text="${parent.getName()}"></td>
-          <td th:text="${parent.getContectNo()}"></td>
-          <td th:text="${parent.getEmail()}"></td>
-          <td th:text="${parent.getAddress()}"></td>
+        <tr th:each="student:${students}" >
+          <td th:text="${student.getStudentName()}"></td>
+          <td th:text="${student.getAddress()}"></td>
+          <td th:text="${student.getEmail()}"></td>
+          <td th:text="${student.getAddress()}"></td>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
-
-
 
 
 

@@ -1,11 +1,14 @@
 package com.project.teacher.models;
 
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 public class FeeStructure {
     @Id
@@ -17,12 +20,4 @@ public class FeeStructure {
     private Course course_id;
     private double fee;
     private double dicount;
-
-    public Integer getFee_id() {
-        return fee_id;
-    }
-
-    public void setFee_id(Integer fee_id) {
-        this.fee_id = fee_id;
-    }
 }

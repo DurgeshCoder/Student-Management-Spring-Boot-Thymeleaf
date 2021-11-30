@@ -1,5 +1,6 @@
 package com.project.student.models;
 
+import com.project.teacher.models.Course;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,6 +19,10 @@ public class Student implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer studentId;
     private String studentName;
+
+    @ManyToOne
+    private Course course;
+
     private String password;
     @Column(unique = true)
     private String email;

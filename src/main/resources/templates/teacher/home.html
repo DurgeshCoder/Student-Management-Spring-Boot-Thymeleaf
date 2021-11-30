@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="teacher/main_base::layout(~{::section})">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
 </head>
 <body>
-  welcome here
+<section>
+  <div class="card">
+    <div class="card-header text-center bg_primary">
+      <h4 class=" text-uppercase">profile</h4>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <tbody>
+          <tr>
+            <td class="h6" ><span class="offset-md-1"></span> Name</td>
+            <td class="offset-1 text-uppercase">
+              <span th:text="${user.getTeacherName()}"></span>
+            </td>
+          </tr>
+          <tr>
+            <td class="h6" ><span class="offset-md-1"></span>Email</td>
+            <td class="offset-1 text-uppercase">
+              <span th:text="${user.getEmail()}"></span>
+            </td>
+          </tr>
+          <tr>
+            <td class="h6" ><span class="offset-md-1"></span>Contect No.</td>
+            <td class="offset-1 text-uppercase">
+              <span th:text="${user.getPhone()}"></span>
+            </td>
+          </tr>
+                        <tr>
+                          <td class="h6" ><span class="offset-md-1"></span>Department</td>
+                          <td class="offset-1 text-uppercase">
+                            <span th:text="${user.getDepartment().getDepartmentName()}"></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="h6" ><span class="offset-md-1"></span>Address</td>
+                          <td class="offset-1 text-uppercase">
+                            <span th:text="${user.getAddress()}"></span>
+                          </td>
+                        </tr>
+          </tbody>
+        </table>
+      </div>
+<!--      <div class="card-footer">-->
+<!--        <div class="row">-->
+<!--          <div class="col-2 mx-auto container text-center">-->
+<!--            <button class="btn btn-primary btn-sm text-uppercase">-->
+<!--              save changes-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+    </div>
+  </div>
+</section>
 </body>
 </html>

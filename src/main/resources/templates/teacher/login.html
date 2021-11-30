@@ -9,24 +9,20 @@
 <section>
   <div id="login">
     <div class="container">
-      <div id="login-row" class="row justify-content-center align-items-center">
+      <div id="login-row" class="row justify-content-center align-items-center mt-md-5">
         <div id="login-column" class="col-md-6">
           <div id="login-box" class="col-md-12">
-            <div class="card mt-2">
+            <div class="card mt-3">
               <div class="card-body">
                 <form id="login-form" class="form" th:action="@{/teacher/dologin}" action="#"
                       method="post">
-
                   <h3 class="text-center text-info">Teacher Login</h3>
-
                   <div th:if="${param.error}" class="alert alert-danger">
                     Invalid username and password
                   </div>
-
                   <div th:if="${param.logout}" class="alert alert-success">
                     You have been logged out
                   </div>
-
                   <div th:if="${param.change}" class="alert alert-success">
                     <p th:text="${param.change}"></p>
                   </div>

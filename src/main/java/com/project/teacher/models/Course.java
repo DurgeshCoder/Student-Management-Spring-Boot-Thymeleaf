@@ -1,10 +1,16 @@
 package com.project.teacher.models;
 
-import lombok.Data;
+import com.project.student.models.Student;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 public class Course {
     @Id
@@ -16,11 +22,14 @@ public class Course {
     @Column(length = 1000)
     private String description;
 
-    public Integer getCourse_id() {
-        return course_id;
-    }
+    @OneToMany(mappedBy = "course")
+    private List<Subject> subject = new ArrayList<>();
 
-    public void setCourse_id(Integer course_id) {
-        this.course_id = course_id;
-    }
+    @OneToMany(mappedBy = "course")
+    private List<Student> student = new ArrayList<>();
+
+    @OneToMany(mappedBy = "course_id")
+    private List<FeeStructure> feeStructures = new ArrayList<>();
+
+
 }

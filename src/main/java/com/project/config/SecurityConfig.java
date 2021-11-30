@@ -49,7 +49,6 @@ public class SecurityConfig {
                     .authorizeRequests()
                     .anyRequest()
                     .hasRole("ADMIN")
-
                     .and()
                     .formLogin()
                     .loginPage("/admin-login")
@@ -59,6 +58,7 @@ public class SecurityConfig {
                     .and()
                     .logout()
                     .logoutUrl("/admin/logout")
+                    .logoutSuccessUrl("/")
                     .deleteCookies("JSESSIONID")
 
                     .and()
@@ -102,7 +102,6 @@ public class SecurityConfig {
                     .authorizeRequests()
                     .anyRequest()
                     .hasRole("STUDENT")
-
                     .and()
                     .formLogin()
                     .loginPage("/student-login")
@@ -111,11 +110,11 @@ public class SecurityConfig {
                     .and()
                     .logout()
                     .logoutUrl("/student/logout")
+                    .logoutSuccessUrl("/")
                     .deleteCookies("JSESSIONID")
                     .and()
                     .exceptionHandling()
                     .accessDeniedPage("/403")
-
                     .and()
                     .csrf().disable();
         }
@@ -160,6 +159,8 @@ public class SecurityConfig {
                     .and()
                     .logout()
                     .logoutUrl("/teacher/logout")
+
+                    .logoutSuccessUrl("/")
                     .deleteCookies("JSESSIONID")
                     .and()
                     .exceptionHandling()

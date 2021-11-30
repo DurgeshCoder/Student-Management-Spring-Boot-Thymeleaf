@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="admin/main_base::layout(~{::section})">
+      th:replace="teacher/main_base::layout(~{::section})">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -9,53 +9,41 @@
 <section>
   <div class="card">
     <div class="card-header bg_primary">
-      <h4>Add Fee Structure</h4>
+      <h4>Add Subject</h4>
     </div>
-    <form id="login-form" class="form" th:action="@{/admin/do-add-fee}" th:object="${fee}" action="#"
+    <form id="login-form" class="form" th:action="@{/teacher/do-add-subject}" th:object="${subject}" action="#"
           method="post">
       <div class="card-body">
-        <div class="row mb-3">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="course_id">Course Name</label>
-              <select
-                      class="form-control"
-                      name="course_id"
-                      id="course_id"
-              >
-                <option th:each="choice : ${courses}"
-                        th:value="${choice.course_id}"
-                ><span th:text="${choice.getCourse_name()}"></span></option>
-              </select>
-            </div>
-          </div>
-        </div>
         <div class="row">
+
           <div class="col-md-6">
             <div class="form-group">
-              <label for="fee">Course Fee</label>
+              <label for="subjectName">Subject Name</label>
               <input
-                      id="fee"
-                      name="fee"
+                      id="subjectName"
+                      name="subjectName"
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
               />
             </div>
           </div>
+
           <div class="col-md-6">
-          <div class="form-group">
-            <label for="dicount">Discount</label>
-            <input
-                    id="dicount"
-                    name="dicount"
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter here"
-            />
+            <div class="form-group">
+              <label for="course">Course</label>
+              <select
+                      class="form-control"
+                      name="course"
+                      id="course"
+              >
+                <option><span >choose</span></option>
+                <option th:each="choice : ${courses}"
+                        th:value="${choice.getCourse_id()}"
+                ><span th:text="${choice.getCourse_name()}"></span></option>
+              </select>
+            </div>
           </div>
-        </div>
-        </div>
 
         <!--        <div class="row">-->
         <!--          <div class="col-md-6">-->
@@ -68,6 +56,7 @@
         <!--                      placeholder="Enter here"-->
         <!--              />-->
         <!--            </div>-->
+
         <!--          </div>-->
         <!--          <div class="col-md-6">-->
         <!--            <div class="form-group">-->
@@ -97,22 +86,20 @@
 
   <div class="card mt-4">
     <div class="card-header bg_primary">
-      <h4>All Teachers</h4>
+      <h4>All Subject</h4>
     </div>
     <div class="card-body" >
       <table class="table table-bordered table-hover">
         <thead>
-        <th>Fee ID </th>
-        <th>Course Name</th>
-        <th>Fee Amount</th>
-        <th>Discount</th>
+        <th>Subject ID </th>
+        <th>Subject Name</th>
+        <th>Course</th>
         </thead>
         <tbody>
-        <tr th:each="fee:${fees}" >
-          <td th:text="${fee.getFee_id()}"></td>
-          <td th:text="${fee.getCourse_id().getCourse_name()}"></td>
-          <td th:text="${fee.getFee()}"></td>
-          <td th:text="${fee.getDicount()}"></td>
+        <tr th:each="subject:${subjects}" >
+          <td th:text="${subject.getSubject_id()}"></td>
+          <td th:text="${subject.getSubjectName()}"></td>
+          <td th:text="${subject.getCourse().getCourse_name()}"></td>
         </tr>
         </tbody>
       </table>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="student/main_base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<section>
+
+
+
+  <div class="card mt-4">
+    <div class="card-header bg_primary">
+      <h4>All Students</h4>
+    </div>
+    <div class="card-body" >
+      <table class="table table-bordered table-hover">
+        <thead>
+        <th>Title</th>
+        <th>Subject</th>
+        <th>Last Date</th>
+        <th>Time</th>
+        </thead>
+        <tbody>
+        <tr th:each="ass:${assignments}" >
+          <td th:text="${ass.getTitle()}"></td>
+          <td th:text="${ass.getSubject().getSubjectName()}"></td>
+          <td th:text="${ass.getLastdate()}"></td>
+          <td th:text="${ass.getContent()}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+</section>
+</body>
+</html>

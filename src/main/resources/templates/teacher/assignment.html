@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="admin/main_base::layout(~{::section})">
+      th:replace="teacher/main_base::layout(~{::section})">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -9,34 +9,18 @@
 <section>
   <div class="card">
     <div class="card-header bg_primary">
-      <h4>Add Fee Structure</h4>
+      <h4>Add Assignment</h4>
     </div>
-    <form id="login-form" class="form" th:action="@{/admin/do-add-fee}" th:object="${fee}" action="#"
+    <form id="login-form" class="form" th:action="@{/teacher/do-add-assignment}" th:object="${assignment}" action="#"
           method="post">
       <div class="card-body">
-        <div class="row mb-3">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="course_id">Course Name</label>
-              <select
-                      class="form-control"
-                      name="course_id"
-                      id="course_id"
-              >
-                <option th:each="choice : ${courses}"
-                        th:value="${choice.course_id}"
-                ><span th:text="${choice.getCourse_name()}"></span></option>
-              </select>
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="fee">Course Fee</label>
+              <label for="title">Title</label>
               <input
-                      id="fee"
-                      name="fee"
+                      id="title"
+                      name="title"
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
@@ -44,19 +28,48 @@
             </div>
           </div>
           <div class="col-md-6">
-          <div class="form-group">
-            <label for="dicount">Discount</label>
-            <input
-                    id="dicount"
-                    name="dicount"
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter here"
-            />
+            <div class="form-group">
+              <label for="lastdate">Last Date</label>
+              <input
+                      id="lastdate"
+                      name="lastdate"
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter here"
+              />
+            </div>
           </div>
         </div>
-        </div>
 
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select
+                      class="form-control"
+                      name="subject"
+                      id="subject"
+              >
+                <option><span >choose</span></option>
+                <option th:each="choice : ${subjects}"
+                        th:value="${choice.getSubject_id()}"
+                ><span th:text="${choice.getSubjectName()}"></span></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="content">content</label>
+              <input
+                      id="content"
+                      name="content"
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter here"
+              />
+            </div>
+          </div>
+        </div>
         <!--        <div class="row">-->
         <!--          <div class="col-md-6">-->
         <!--            <div class="form-group">-->
@@ -68,6 +81,7 @@
         <!--                      placeholder="Enter here"-->
         <!--              />-->
         <!--            </div>-->
+
         <!--          </div>-->
         <!--          <div class="col-md-6">-->
         <!--            <div class="form-group">-->
@@ -97,22 +111,22 @@
 
   <div class="card mt-4">
     <div class="card-header bg_primary">
-      <h4>All Teachers</h4>
+      <h4>All Students</h4>
     </div>
     <div class="card-body" >
       <table class="table table-bordered table-hover">
         <thead>
-        <th>Fee ID </th>
-        <th>Course Name</th>
-        <th>Fee Amount</th>
-        <th>Discount</th>
+        <th>Title</th>
+        <th>Subject</th>
+        <th>Last Date</th>
+        <th>Time</th>
         </thead>
         <tbody>
-        <tr th:each="fee:${fees}" >
-          <td th:text="${fee.getFee_id()}"></td>
-          <td th:text="${fee.getCourse_id().getCourse_name()}"></td>
-          <td th:text="${fee.getFee()}"></td>
-          <td th:text="${fee.getDicount()}"></td>
+        <tr th:each="ass:${assignments}" >
+          <td th:text="${ass.getTitle()}"></td>
+          <td th:text="${ass.getSubject().getSubjectName()}"></td>
+          <td th:text="${ass.getLastdate()}"></td>
+          <td th:text="${ass.getContent()}"></td>
         </tr>
         </tbody>
       </table>
