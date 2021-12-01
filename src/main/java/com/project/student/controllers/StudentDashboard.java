@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -78,7 +79,13 @@ public class StudentDashboard {
         String name = principal.getName();
         m.addAttribute("user", this.studentRepo.findByEmail(name));
         m.addAttribute("title","Your assigment");
-        m.addAttribute("assignments",assignmentRepo.findAll());
+        ArrayList<Assignment> list=new ArrayList<>();
+        this.studentRepo.findByEmail(name).getCourse().getSubject().forEach((e)->{
+            e.getAssignments().forEach(assignment -> {
+                list.add(assignment);
+            });
+        });
+        m.addAttribute("assignments",list);
         return "student/assignment";
     }
 
@@ -87,7 +94,7 @@ public class StudentDashboard {
         String name = principal.getName();
         m.addAttribute("user", this.studentRepo.findByEmail(name));
         m.addAttribute("title", "Fee Structure");
-        m.addAttribute("fees",feeStructureRepo.findAll());
+        m.addAttribute("fees",this.studentRepo.findByEmail(name).getCourse().getFeeStructures());
         m.addAttribute("courses", courseRepo.findAll());
         return "student/fee";
     }

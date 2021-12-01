@@ -19,6 +19,8 @@ public class Subject {
     private String subjectName;
     @ManyToOne
     private Course course;
+
+
     @OneToMany(mappedBy = "subject")
-    private List<Assignment> teachers = new ArrayList<>();
+    private List<Assignment> assignments = new ArrayList<>();
 }

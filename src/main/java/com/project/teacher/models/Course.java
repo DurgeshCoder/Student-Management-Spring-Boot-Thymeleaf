@@ -30,6 +30,8 @@ public class Course {
 
     @OneToMany(mappedBy = "course_id")
     private List<FeeStructure> feeStructures = new ArrayList<>();
-
+//
+//    @ManyToOne
+//    private Department department;
 
 }

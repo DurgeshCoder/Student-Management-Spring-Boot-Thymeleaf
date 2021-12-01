@@ -22,7 +22,6 @@ public class Teacher  implements UserDetails {
     @Column(unique = true)
     private String email;
     private String phone;
-
     @ManyToOne
     private  Department department;
     private String address;

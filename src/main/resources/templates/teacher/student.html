@@ -24,6 +24,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
+                      required
               />
             </div>
           </div>
@@ -36,11 +37,11 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
+                      required
               />
             </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
@@ -51,6 +52,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
+                      required
               />
             </div>
           </div>
@@ -63,35 +65,26 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter here"
+                      required
               />
             </div>
           </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="course">Course Name</label>
+              <select
+                      class="form-control"
+                      name="course"
+                      id="course"
+                      required
+              >
+                <option th:each="choice : ${courses}"
+                        th:value="${choice.getCourse_id()}"
+                ><span th:text="${choice.getCourse_name()}"></span></option>
+              </select>
+            </div>
+          </div>
         </div>
-        <!--        <div class="row">-->
-        <!--          <div class="col-md-6">-->
-        <!--            <div class="form-group">-->
-        <!--              <label for="city">City</label>-->
-        <!--              <input-->
-        <!--                      id="city"-->
-        <!--                      type="text"-->
-        <!--                      class="form-control"-->
-        <!--                      placeholder="Enter here"-->
-        <!--              />-->
-        <!--            </div>-->
-
-        <!--          </div>-->
-        <!--          <div class="col-md-6">-->
-        <!--            <div class="form-group">-->
-        <!--              <label for="qualification">course</label>-->
-        <!--              <input-->
-        <!--                      id="qualification"-->
-        <!--                      type="text"-->
-        <!--                      class="form-control"-->
-        <!--                      placeholder="Enter here"-->
-        <!--              />-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
       </div>
       <div class="card-footer">
         <div class="row">
@@ -102,7 +95,6 @@
         </div>
       </div>
     </form>
-
   </div>
 
 
@@ -129,9 +121,6 @@
       </table>
     </div>
   </div>
-
-
-
 </section>
 </body>
 </html>

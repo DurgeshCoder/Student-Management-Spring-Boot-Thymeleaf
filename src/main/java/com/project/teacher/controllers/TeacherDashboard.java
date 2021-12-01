@@ -59,6 +59,7 @@ public class TeacherDashboard {
         m.addAttribute("user", this.teacherRepo.findByEmail(name));
         Student student = new Student();
         m.addAttribute("student",student);
+        m.addAttribute("courses",courseRepo.findAll());
         m.addAttribute("students",studentRepo.findAll());
         return "teacher/student";
     }
